@@ -1,0 +1,19 @@
+#loading the modules
+
+module purge
+module load intel/19.0.5
+module load anaconda3/2020.02
+
+export PATH=/storage/home/hpaceice1/araparti3/data/sparc_run/SPARC/lib:$PATH
+export PYTHONPATH=/storage/home/hpaceice1/araparti3/data/sparc_run/ase:$PYTHONPATH
+export PATH=/storage/home/hpaceice1/araparti3/data/sparc_run/ase/bin:$PATH
+export PYTHONPATH=/storage/home/hpaceice1/araparti3/data/sparc_run/sparc-dft-api/:$PYTHONPATH
+export SPARC_PSP_PATH=/storage/home/hpaceice1/araparti3/data/sparc_run/sparc-dft-api/sparc/pseudos/PBE_pseudos
+
+if [[ -z "${PBS_NP}" ]]; then
+  export ASE_SPARC_COMMAND="/storage/home/hpaceice1/araparti3/data/sparc_run/SPARC/lib/sparc -name PREFIX"
+else
+  export ASE_SPARC_COMMAND="mpirun -np $PBS_NP /storage/home/hpaceice1/araparti3/data/sparc_run/SPARC/lib/sparc -name PREFIX"
+fi
+
+/storage/home/hpaceice1/araparti3/data/sparc_run/sparc_env.sh

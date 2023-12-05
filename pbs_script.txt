@@ -1,0 +1,19 @@
+#!/bin/bash
+#PBS -l nodes=1:ppn=2
+#PBS -l pmem=1GB
+#PBS -l walltime=1:00:00
+#PBS -q pace-ice
+#PBS -N optimizer
+#PBS -o stdout
+#PBS -e stderr
+
+cd $PBS_O_WORKDIR
+
+source ~/.bashrc
+
+# module load anaconda3 #It is optional to load anaconda. You don't need to load it if it's already been loaded in the environment
+# source /storage/coda1/p-amedford6/0/shared/rich_project_chbe-medford/medford-share/envs/espresso-6.7MaX-beef-ipi
+
+source /storage/home/hpaceice1/araparti3/data/sparc_run/sparc_env.sh
+
+python H2_016.py
